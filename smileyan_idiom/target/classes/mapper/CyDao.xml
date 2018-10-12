@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.smileyan.springboot.smileyan_idiom.dao.CyDao">
+
+    <!-- 根据Id查询 -->
+    <select id="queryCyById" resultType="cn.smileyan.springboot.smileyan_idiom.entity.Cy">
+        select name,spell,content,derivation,samples
+        from cy
+        where id=#{cyId}
+    </select>
+    <!-- 根据名字查询 -->
+    <select id="queryCyByName" resultType="cn.smileyan.springboot.smileyan_idiom.entity.Cy">
+        select name,spell,content,derivation,samples
+        from cy
+        where name=#{name}
+    </select>
+    <!-- 模糊查询 严格查询 -->
+    <select id="queryCyByHeadNameStrictly" resultType="cn.smileyan.springboot.smileyan_idiom.entity.Cy">
+        select id,name
+        from cy
+        where name like #{name1}
+        limit #{name2}, #{name3}
+    </select>
+
+    <!-- 模糊查询 不严格查询-->
+    <select id="queryCyByHeadName" resultType="cn.smileyan.springboot.smileyan_idiom.entity.Cy">
+        SELECT id,name
+        FROM cy
+        WHERE id >= (SELECT id
+                      FROM cy
+                      WHERE name like #{name1}
+                      limit 1
+                      )
+        LIMIT #{name2}, #{name3}
+    </select>
+</mapper>

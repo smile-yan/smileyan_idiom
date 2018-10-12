@@ -1,0 +1,18 @@
+server:
+  port: 10123
+
+jdbc:
+  driver: com.mysql.jdbc.Driver
+  url: jdbc:mysql://localhost:3306/smileyan_cy?useUnicode=true&characterEncoding=utf8&useSSL=false
+  user: root
+  password: Yan1996>
+
+#mybatis
+mybatis_config_file:   mybatis-config.xml
+mybatis_mapper_path:  /mapper/**.xml
+entity_package: cn.smileyan.springboot.smileyan_idiom.entity
+dao_package: cn.smileyan.springboot.smileyan_idiom.dao
+
+
+
+
